@@ -1,39 +1,50 @@
-*{
-    padding: 0;
+* {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     margin: 0;
+    background-color: #f8f8f8;
 }
-#game{
-    width: 500px;
+
+#game {
+    position: relative;
+    width: 400px;
     height: 200px;
-    border: 1px solid black;
+    border: 2px solid #333;
+    overflow: hidden;
+    border-radius: 8px;
 }
-#character{
-    width: 20px;
-    height: 50px;
-    background-color: red;
-    position: relative;
-    top: 150px;
+
+#character {
+    width: 30px;
+    height: 60px;
+    background-color: #e74c3c;
+    position: absolute;
+    bottom: 0;
+    transition: transform 0.2s ease-in-out;
 }
-.animate{
-    animation: jump 500ms infinite;
+
+#character.animate {
+    transform: translateY(-100px);
 }
-@keyframes jump {
-    0%{top: 150px;}
-    30%{top: 100px;}
-    70%{top: 100px;}
-    100%{top: 150px;}
-    
+
+#block {
+    width: 30px;
+    height: 30px;
+    background-color: #3498db;
+    position: absolute;
+    bottom: 0;
+    left: 100%;
+    animation: block 2s linear infinite;
+    border-radius: 50%;
 }
-#block{
-    width: 20px;
-    height: 20px;
-    background-color: blue;
-    position: relative;
-    top: 130px;
-    left: 480px;
-    animation: block 1s infinite ;
-}
-@keyframes block{
-    0%{left: 480px;}
-    100%{left: -40px;}
+
+@keyframes block {
+    0% { left: 100%; }
+    100% { left: -30px; }
 }

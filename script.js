@@ -1,20 +1,27 @@
 var character = document.getElementById("character");
 var block = document.getElementById("block");
-function jump(){
-    if(character.classList !="animate"){
-    character.classList.add("animate");
+
+function jump() {
+    if (!character.classList.contains("animate")) {
+        character.classList.add("animate");
+        setTimeout(function () {
+            character.classList.remove("animate");
+        }, 500);
     }
-    setTimeout(function(){
-        character.classList.remove("animate");
-    }, 500);
 }
 
-var checkDead = setInterval(function(){  
-    var characterTop = parseInt(window.getComputedStyle(character).getPropertyValue("top"))
-    var blockLeft = parseInt(window.getComputedStyle(block).getPropertyValue("left"))
-    if(blockLeft<20 && blockLeft>0 && characterTop>=130){
-        alert("U luse.");
+var checkDead = setInterval(function () {
+    var characterBottom = parseInt(window.getComputedStyle(character).getPropertyValue("bottom"));
+    var blockLeft = parseInt(window.getComputedStyle(block).getPropertyValue("left"));
+
+    if (blockLeft < 60 && blockLeft > 0 && characterBottom <= 90) {
+        alert("Game Over!");
         block.style.animation = "none";
-        block.style.display = "none";
     }
-},10)
+}, 10);
+
+document.addEventListener("keydown", function (event) {
+    if (event.code === "Space") {
+        jump();
+    }
+});
